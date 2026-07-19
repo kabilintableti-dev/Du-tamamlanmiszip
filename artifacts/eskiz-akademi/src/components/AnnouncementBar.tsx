@@ -5,7 +5,6 @@ export function AnnouncementBar() {
     "🎨 Kayıtlar Başladı",
     "2027 Güzel Sanatlar Hazırlık",
     "İmgesel Desen Atölyesi",
-    "Ücretsiz Tanışma Dersi",
     "Sınav Odaklı Eğitim",
     "Birebir Takip"
   ];
