@@ -4,7 +4,6 @@ import { Hero } from '@/components/Hero';
 import { WhyUs } from '@/components/WhyUs';
 import { Programs } from '@/components/Programs';
 import { Gallery } from '@/components/Gallery';
-import { Events } from '@/components/Events';
 import { StudentWorks } from '@/components/StudentWorks';
 import { Achievements } from '@/components/Achievements';
 import { Instructors } from '@/components/Instructors';
@@ -23,7 +22,6 @@ export default function Home() {
       <WhyUs />
       <Programs />
       <Gallery />
-      <Events />
       <StudentWorks />
       <Achievements />
       <Instructors />
