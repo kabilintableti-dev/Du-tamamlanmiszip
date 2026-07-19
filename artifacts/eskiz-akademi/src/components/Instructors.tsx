@@ -9,7 +9,7 @@ import inst2 from '../assets/educators/img-20260718-wa0061.jpg';
 const instructors = [
   {
     name: "Aykut Altıntop",
-    role: "Atölye öğretmeni/Anadolu Üniversitesi",
+    role: "Atölye eğitmeni/Anadolu Üniversitesi",
     exp: "Deneyim Bilgisi",
     img: inst1
   },
