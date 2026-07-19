@@ -9,7 +9,7 @@ import inst2 from '../assets/educators/img-20260718-wa0061.jpg';
 const instructors = [
   {
     name: "Aykut Altıntop",
-    role: "Atölye eğitmeni/Anadolu Üniversitesi",
+    role: "MÜDÜR<br/>Atölye eğitmeni/Anadolu Üniversitesi",
     exp: "Deneyim Bilgisi",
     img: inst1
   },
@@ -61,7 +61,7 @@ export function Instructors() {
                   {inst.name}
                   <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-eskiz-gold group-hover:w-full transition-all duration-500"></div>
                 </h3>
-                <p className="font-sans text-eskiz-light/70 mt-4">{inst.role}</p>
+                <p className="font-sans text-eskiz-light/70 mt-4" dangerouslySetInnerHTML={{ __html: inst.role }} />
                 <p className="font-manrope text-sm text-eskiz-gold tracking-widest uppercase mt-2">{inst.exp}</p>
               </div>
             </motion.div>
