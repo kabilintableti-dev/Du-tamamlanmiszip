@@ -1,0 +1,66 @@
+import React from 'react';
+import Masonry from 'react-masonry-css';
+import { motion } from 'framer-motion';
+
+const studentImages = [
+  "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3",
+  "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5",
+  "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7",
+  "https://images.unsplash.com/photo-1541963463532-d68292c34b19",
+  "https://images.unsplash.com/photo-1513364776144-60967b0f800f",
+  "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9"
+];
+
+const StudentWorks: React.FC = () => {
+  const breakpointColumns = {
+    default: 3,
+    1100: 2,
+    700: 1
+  };
+
+  return (
+    <section className="py-32 px-6 lg:px-24 bg-primary" id="galeri">
+      <div className="max-w-[1800px] mx-auto">
+        <div className="mb-20 text-center">
+          <span className="font-button text-gold uppercase tracking-[0.5em] text-[10px] block mb-4">Masterpiece</span>
+          <h2 className="font-title text-6xl text-secondary">Öğrenci <span className="italic">Çalışmaları</span></h2>
+        </div>
+
+        <Masonry
+          breakpointCols={breakpointColumns}
+          className="flex w-auto -ml-8"
+          columnClassName="pl-8 bg-clip-padding"
+        >
+          {studentImages.map((src, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="relative group mb-8 overflow-hidden rounded-[2rem] cursor-none"
+            >
+              <img 
+                src={src} 
+                alt="Student Work" 
+                className="w-full transition-transform duration-1000 group-hover:scale-110" 
+              />
+              
+              {/* Gold Frame Overlay */}
+              <div className="absolute inset-0 border-0 group-hover:border-[20px] border-gold/10 transition-all duration-700 pointer-events-none" />
+              
+              {/* Info Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-10 flex flex-col justify-end">
+                <p className="text-gold font-button uppercase tracking-widest text-xs mb-2">Desen / Karakalem</p>
+                <h4 className="text-secondary font-title text-2xl">Zeynep Yılmaz</h4>
+                <p className="text-secondary/40 text-sm mt-1">Mimar Sinan GSF Hazırlık</p>
+              </div>
+            </motion.div>
+          ))}
+        </Masonry>
+      </div>
+    </section>
+  );
+};
+
+export default StudentWorks;

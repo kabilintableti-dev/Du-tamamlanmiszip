@@ -1,0 +1,165 @@
+Mevcut web sitesinin mimarisini ve çalışan yapısını kesinlikle bozma. Var olan component yapısını, responsive tasarımı, routing sistemini ve performansı koru.
+Ama ana sayfaya profesyonel bir Duyurular & Blog sistemi ekle.
+Genel Amaç
+Eskiz Akademi'nin web sitesi yalnızca statik bir site olmayacak.
+Akademide çalışan kişiler;
+yeni blog yazıları
+yetenek sınavı duyuruları
+kayıt tarihleri
+etkinlikler
+akademi haberleri
+gibi içerikleri kolayca ekleyebilmeli.
+Bu nedenle sistem ileride bir CMS (ör. Sanity, Strapi, Contentful veya benzeri) ile entegre edilebilecek şekilde modüler tasarlansın.
+Şimdilik örnek JSON verisiyle çalışabilir.
+Ana Sayfa Düzeni
+Hero bölümünde solda mevcut video aynen kalsın.
+Video kaldırılmayacak.
+Video responsive çalışmaya devam edecek.
+Video'nun SAĞ tarafına premium bir "Duyurular" paneli ekle.
+Desktop görünümünde:
+-----------------------------------------
+|             VIDEO        | DUYURULAR |
+|                          |           |
+|                          |           |
+|                          |           |
+-----------------------------------------
+Mobilde ise
+önce video
+altında duyurular paneli
+şeklinde sıralansın.
+Duyurular Paneli
+Başlık:
+📢 Güncel Duyurular
+Altında son 3 veya 4 duyuru listelensin.
+Her kartta:
+• kategori etiketi
+(Yetenek Sınavı)
+(Kayıt)
+(Etkinlik)
+(Haber)
+• başlık
+• kısa açıklama
+• tarih
+• küçük ok ikonu
+Kart hover olduğunda
+hafif büyüsün
+arka planı değişsin
+premium gölge oluşsun.
+Tıklanınca ilgili blog sayfasına gitsin.
+En Üste Sabit Duyuru
+Eğer önemli bir duyuru varsa
+kartın en üstünde
+🔥 ÖNEMLİ
+rozeti çıksın.
+Örneğin
+Anadolu Üniversitesi Güzel Sanatlar Fakültesi
+2026 Yetenek Sınavı Takvimi Açıklandı
+şeklinde.
+Blog Sayfası
+Yeni bir
+/blog
+sayfası oluştur.
+Burada bütün duyurular listelensin.
+Kart tasarımı modern olsun.
+Her kartta
+kapak görseli
+kategori
+başlık
+özet
+tarih
+bulunsun.
+Tıklayınca
+/blog/slug
+şeklinde detay sayfasına açılsın.
+Blog Detay Sayfası
+İçerik sayfasında:
+Başlık
+Kapak Görseli
+Tarih
+Kategori
+Okuma Süresi
+İçerik
+Paylaş Butonları
+Sonraki Yazılar
+Benzer Yazılar
+bulunsun.
+Veri Yapısı
+Şimdilik CMS bağlama.
+Ama sistemi CMS'e hazır tasarla.
+Örneğin
+title
+
+slug
+
+excerpt
+
+content
+
+coverImage
+
+category
+
+date
+
+featured
+
+author
+
+createdAt
+şeklinde yapı oluştur.
+İleride sadece API bağlanınca çalışmaya devam etsin.
+Tasarım
+Eskiz Akademi'nin mevcut tasarım dilini bozma.
+Renkler:
+Antrasit
+Beyaz
+Altın
+Cam efekti
+Glassmorphism
+Yumuşak gölgeler
+Apple + Stripe kalitesi.
+Animasyonlarda
+Framer Motion kullan.
+Kartlar
+fade
+slide
+hover scale
+animasyonlarına sahip olsun.
+SEO
+Blog yazılarında
+dynamic title
+meta description
+Open Graph
+Twitter Card
+schema.org Article
+breadcrumb
+oluştur.
+Performans
+Lazy loading
+Image optimization
+Code splitting
+Pagination
+Infinite Scroll yerine sayfalama
+uygula.
+Responsive
+320 px'den
+4K monitöre kadar
+kusursuz çalışsın.
+Mobilde okunabilirlik ön planda olsun.
+Yönetim Paneline Hazırlık
+Kod yapısını ileride aşağıdaki servislerden herhangi biri kolayca bağlanabilecek şekilde hazırla:
+Sanity
+Strapi
+Contentful
+Supabase
+Firebase
+Veri katmanını componentlerden ayır.
+Kod Kalitesi
+Mevcut projeyi bozma.
+Mevcut componentleri koru.
+Gereksiz dosya oluşturma.
+TypeScript tiplerini eksiksiz yaz.
+Yeniden kullanılabilir componentler oluştur.
+Temiz klasör yapısı kullan.
+Production seviyesinde kod yaz.
+Amaç: Ana sayfadaki hero videosunun yanında her zaman güncel duyuruların yer aldığı profesyonel bir panel oluşturmak ve bu panelin tıklandığında tam özellikli bir blog/duyuru sistemine yönlendirmesini sağlamak. Sistem gelecekte bir CMS bağlandığında kod değiştirmeden yalnızca veri kaynağı değiştirilerek çalışmaya devam etsin.

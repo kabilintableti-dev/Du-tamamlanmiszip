@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Eskiz Akademi"
+version = "1.0.0"
+id = "artifacts/eskiz-akademi"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21757
+
+[services.development]
+run = "pnpm --filter @workspace/eskiz-akademi run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/eskiz-akademi", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/eskiz-akademi/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21757"
+BASE_PATH = "/"
