@@ -8,14 +8,14 @@ import inst2 from '../assets/educators/img-20260718-wa0061.jpg';
 // alanlarını kendi eğitmen bilgilerinle değiştirmen yeterli.
 const instructors = [
   {
-    name: "Eğitmen Adı Soyadı",
-    role: "Unvan / Mezuniyet Bilgisi",
+    name: "Aykut Altıntop",
+    role: "Atölye öğretmeni/Anadolu Üniversitesi",
     exp: "Deneyim Bilgisi",
     img: inst1
   },
   {
-    name: "Eğitmen Adı Soyadı",
-    role: "Unvan / Mezuniyet Bilgisi",
+    name: "Asena Altıntop",
+    role: "Müdür/Anadolu Üniversitesi",
     exp: "Deneyim Bilgisi",
     img: inst2
   }
