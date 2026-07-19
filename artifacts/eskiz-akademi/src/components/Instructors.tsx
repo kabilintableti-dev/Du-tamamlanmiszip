@@ -15,7 +15,7 @@ const instructors = [
   },
   {
     name: "Asena Altıntop",
-    role: "Müdür/Anadolu Üniversitesi",
+    role: "Atölye eğitmeni/Anadolu Üniversitesi",
     exp: "Deneyim Bilgisi",
     img: inst2
   }
