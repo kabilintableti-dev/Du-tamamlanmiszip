@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
-import photo7400 from '@assets/7400_1784376803158.jpg';
-import photo7407 from '@assets/7407_1784376803154.jpg';
-import photo7408 from '@assets/7408_1784376803148.jpg';
-import photo7411 from '@assets/7411_1784376803140.jpg';
-import photo7416 from '@assets/7416_1784376803174.jpg';
+import photo7400 from '@/assets/gallery/atolye/7401.jpg';
+import photo7407 from '@/assets/gallery/atolye/7407.jpg';
+import photo7408 from '@/assets/gallery/atolye/7408.jpg';
+import photo7411 from '@/assets/gallery/atolye/7411.jpg';
+import photo7416 from '@/assets/gallery/atolye/7412.jpg';
 
 const programs = [
   {

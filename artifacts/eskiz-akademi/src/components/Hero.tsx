@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import { ChevronDown } from 'lucide-react';
 import { AnnouncementsPanel } from './AnnouncementsPanel';
 import primaryVideo from '@assets/SnapInsta.to_AQPtHB0I7Zb2lhkplzUx4tmNVgdW8PChgRdcn10MMgSDWykR5_1784377547824.mp4';
-import secondaryVideo from '@assets/SnapInsta.to_AQPtHB0I7Zb2lhkplzUx4tmNVgdW8PChgRdcn10MMgSDWykR5_1784376803135.mp4';
+const secondaryVideo = primaryVideo;
 
 export function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);

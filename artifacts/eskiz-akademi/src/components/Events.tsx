@@ -4,10 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Calendar } from 'lucide-react';
 
-import ev1 from '@assets/7415_1784376803169.jpg';
-import ev2 from '@assets/7416_1784376803174.jpg';
-import ev3 from '@assets/7567_1784376803184.jpg';
-import ev4 from '@assets/7568_1784376803179.jpg';
+import ev1 from '@/assets/gallery/workshop-events/img-20260718-wa0032.jpg';
+import ev2 from '@/assets/gallery/workshop-events/img-20260718-wa0040.jpg';
+import ev3 from '@/assets/gallery/workshop-events/img-20260718-wa0044.jpg';
+import ev4 from '@/assets/gallery/workshop-events/img-20260718-wa0054.jpg';
 
 const events = [
   {
