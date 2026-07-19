@@ -62,7 +62,6 @@ export function Instructors() {
                   <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-eskiz-gold group-hover:w-full transition-all duration-500"></div>
                 </h3>
                 <p className="font-sans text-eskiz-light/70 mt-4" dangerouslySetInnerHTML={{ __html: inst.role }} />
-                <p className="font-manrope text-sm text-eskiz-gold tracking-widest uppercase mt-2">{inst.exp}</p>
               </div>
             </motion.div>
           ))}
