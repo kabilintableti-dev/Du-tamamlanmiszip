@@ -11,12 +11,10 @@ import { BlogSection } from '@/components/BlogSection';
 import { ContactCTA } from '@/components/ContactCTA';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
-import { AnnouncementBar } from '@/components/AnnouncementBar';
 
 export default function Home() {
   return (
     <div className="w-full bg-eskiz-dark text-eskiz-light overflow-x-hidden">
-      <AnnouncementBar />
       <Navbar />
       <Hero />
       <WhyUs />
