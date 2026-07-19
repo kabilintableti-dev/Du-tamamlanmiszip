@@ -1,18 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import inst1 from '../assets/educators/img-20260718-wa0056.jpg';
 import inst2 from '../assets/educators/img-20260718-wa0061.jpg';
 
 // NOT: İsim ve unvan bilgileri geçici. Aşağıdaki "name", "role" ve "exp"
 // alanlarını kendi eğitmen bilgilerinle değiştirmen yeterli.
 const instructors = [
-  {
-    name: "Aykut Altıntop",
-    role: "Atölye öğretmeni/Anadolu Üniversitesi",
-    exp: "Deneyim Bilgisi",
-    img: inst1
-  },
   {
     name: "Asena Altıntop",
     role: "Müdür/Anadolu Üniversitesi",
