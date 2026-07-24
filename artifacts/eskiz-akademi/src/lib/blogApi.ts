@@ -56,10 +56,15 @@ export async function fetchAllPosts(): Promise<{ posts: BlogPost[] }> {
   return res.json();
 }
 
+function adminHeaders(): HeadersInit {
+  const password = sessionStorage.getItem('eskiz_admin_password') ?? '';
+  return { 'Content-Type': 'application/json', 'x-admin-password': password };
+}
+
 export async function createPost(data: CreateBlogPostInput): Promise<BlogPost> {
   const res = await fetch(`${API_BASE}/blog/posts`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: adminHeaders(),
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error('Failed to create post');
@@ -72,7 +77,7 @@ export async function updatePost(
 ): Promise<BlogPost> {
   const res = await fetch(`${API_BASE}/blog/posts/${slug}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: adminHeaders(),
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error('Failed to update post');
@@ -80,6 +85,9 @@ export async function updatePost(
 }
 
 export async function deletePost(slug: string): Promise<void> {
-  const res = await fetch(`${API_BASE}/blog/posts/${slug}`, { method: 'DELETE' });
+  const res = await fetch(`${API_BASE}/blog/posts/${slug}`, {
+    method: 'DELETE',
+    headers: adminHeaders(),
+  });
   if (!res.ok) throw new Error('Failed to delete post');
 }

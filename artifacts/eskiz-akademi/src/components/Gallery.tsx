@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { fetchMedia } from '@/lib/mediaApi';
 
 // Görselleri otomatik yükler. Yeni bir fotoğraf eklemek için,
 // ilgili klasöre (src/assets/gallery/atolye, /student-works veya /workshop-events)
 // dosyayı atman yeterli — kodu değiştirmene gerek yok.
+// Ayrıca /admin/media panelinden eklenen görseller de otomatik burada görünür.
 const atolyeImages = import.meta.glob('../assets/gallery/atolye/*', { eager: true, import: 'default' }) as Record<string, string>;
 const studentWorkImages = import.meta.glob('../assets/gallery/student-works/*', { eager: true, import: 'default' }) as Record<string, string>;
 const workshopEventImages = import.meta.glob('../assets/gallery/workshop-events/*', { eager: true, import: 'default' }) as Record<string, string>;
@@ -17,7 +20,7 @@ function toPhotos(images: Record<string, string>, category: string) {
     .map((key) => ({ src: images[key], category }));
 }
 
-const photos = [
+const bundledPhotos = [
   ...toPhotos(atolyeImages, "Atölye"),
   ...toPhotos(studentWorkImages, "Öğrenci Çalışmaları"),
   ...toPhotos(workshopEventImages, "Etkinlik"),
@@ -26,6 +29,26 @@ const photos = [
 export function Gallery() {
   const [activeTab, setActiveTab] = useState("Tümü");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const { data: atolyeExtra } = useQuery({
+    queryKey: ['public-media', 'atolye'],
+    queryFn: () => fetchMedia('atolye'),
+  });
+  const { data: studentExtra } = useQuery({
+    queryKey: ['public-media', 'ogrenci-calismalari'],
+    queryFn: () => fetchMedia('ogrenci-calismalari'),
+  });
+  const { data: eventExtra } = useQuery({
+    queryKey: ['public-media', 'etkinlik'],
+    queryFn: () => fetchMedia('etkinlik'),
+  });
+
+  const photos = [
+    ...bundledPhotos,
+    ...(atolyeExtra ?? []).map((m) => ({ src: m.image_data, category: 'Atölye' })),
+    ...(studentExtra ?? []).map((m) => ({ src: m.image_data, category: 'Öğrenci Çalışmaları' })),
+    ...(eventExtra ?? []).map((m) => ({ src: m.image_data, category: 'Etkinlik' })),
+  ];
 
   const filteredPhotos = activeTab === "Tümü" 
     ? photos 

@@ -7,6 +7,20 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 const blogRouter = Router();
 
+function checkAdminPassword(req: any, res: any): boolean {
+  const provided = req.header("x-admin-password");
+  const expected = process.env.ADMIN_PASSWORD;
+  if (!expected) {
+    res.status(503).json({ error: "Admin password not configured on server" });
+    return false;
+  }
+  if (provided !== expected) {
+    res.status(401).json({ error: "Invalid admin password" });
+    return false;
+  }
+  return true;
+}
+
 // GET /api/blog/posts — list all published posts, optionally filter by category
 blogRouter.get("/blog/posts", async (req, res) => {
   try {
@@ -76,6 +90,7 @@ blogRouter.get("/blog/admin/all", async (req, res) => {
 
 // POST /api/blog/posts — create a new post
 blogRouter.post("/blog/posts", async (req, res) => {
+  if (!checkAdminPassword(req, res)) return;
   try {
     const { title, slug, excerpt, content, category, cover_image, author, reading_time, published } = req.body;
     if (!title || !slug || !excerpt || !content || !category) {
@@ -99,6 +114,7 @@ blogRouter.post("/blog/posts", async (req, res) => {
 
 // PUT /api/blog/posts/:slug — update a post
 blogRouter.put("/blog/posts/:slug", async (req, res) => {
+  if (!checkAdminPassword(req, res)) return;
   try {
     const { slug } = req.params;
     const { title, excerpt, content, category, cover_image, author, reading_time, published } = req.body;
@@ -129,6 +145,7 @@ blogRouter.put("/blog/posts/:slug", async (req, res) => {
 
 // DELETE /api/blog/posts/:slug — delete a post
 blogRouter.delete("/blog/posts/:slug", async (req, res) => {
+  if (!checkAdminPassword(req, res)) return;
   try {
     const { slug } = req.params;
     const result = await pool.query(

@@ -1,27 +1,46 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useQuery } from '@tanstack/react-query';
+import { fetchMedia } from '@/lib/mediaApi';
 
 import inst1 from '../assets/educators/img-20260718-wa0056.jpg';
 import inst2 from '../assets/educators/img-20260718-wa0061.jpg';
 
 // NOT: İsim ve unvan bilgileri geçici. Aşağıdaki "name", "role" ve "exp"
 // alanlarını kendi eğitmen bilgilerinle değiştirmen yeterli.
-const instructors = [
+const bundledInstructors = [
   {
-    name: "Aykut Altıntop",
-    role: "MÜDÜR<br/>Atölye eğitmeni/Anadolu Üniversitesi",
+    name: "Eğitmen Adı Soyadı",
+    role: "Unvan / Mezuniyet Bilgisi",
     exp: "Deneyim Bilgisi",
     img: inst1
   },
   {
-    name: "Asena Altıntop",
-    role: "Atölye eğitmeni/Anadolu Üniversitesi",
+    name: "Eğitmen Adı Soyadı",
+    role: "Unvan / Mezuniyet Bilgisi",
     exp: "Deneyim Bilgisi",
     img: inst2
   }
 ];
 
 export function Instructors() {
+  // /admin/media panelinden "Eğitmenler" kategorisine eklenen görseller
+  // (görselin altındaki yazı, panelde eklerken girilen açıklama olur).
+  const { data: extra } = useQuery({
+    queryKey: ['public-media', 'egitmen'],
+    queryFn: () => fetchMedia('egitmen'),
+  });
+
+  const instructors = [
+    ...bundledInstructors,
+    ...(extra ?? []).map((m) => ({
+      name: m.caption || 'Eğitmen Adı Soyadı',
+      role: '',
+      exp: '',
+      img: m.image_data,
+    })),
+  ];
+
   return (
     <section className="py-24 md:py-32 bg-eskiz-dark relative">
       <div className="container mx-auto px-6 md:px-12 max-w-5xl">
@@ -43,8 +62,8 @@ export function Instructors() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: i * 0.2 }}
-              whileHover={{ rotateY: i === 0 ? 5 : -5, rotateX: 5 }}
+              transition={{ duration: 0.7, delay: (i % 4) * 0.2 }}
+              whileHover={{ rotateY: i % 2 === 0 ? 5 : -5, rotateX: 5 }}
               style={{ perspective: 1000 }}
               className="group cursor-pointer"
             >
@@ -61,7 +80,8 @@ export function Instructors() {
                   {inst.name}
                   <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-eskiz-gold group-hover:w-full transition-all duration-500"></div>
                 </h3>
-                <p className="font-sans text-eskiz-light/70 mt-4" dangerouslySetInnerHTML={{ __html: inst.role }} />
+                {inst.role && <p className="font-sans text-eskiz-light/70 mt-4">{inst.role}</p>}
+                {inst.exp && <p className="font-manrope text-sm text-eskiz-gold tracking-widest uppercase mt-2">{inst.exp}</p>}
               </div>
             </motion.div>
           ))}

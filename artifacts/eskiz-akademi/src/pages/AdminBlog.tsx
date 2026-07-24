@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Plus, Edit2, Trash2, X, Eye, EyeOff, Loader2, Search, ArrowLeft, RefreshCw } from 'lucide-react';
 import { format } from 'date-fns';
 import { tr } from 'date-fns/locale';
+import { AdminGate } from '@/components/AdminGate';
 
 const CATEGORIES = [
   { id: 'hazirlik', label: 'Güzel Sanatlar Hazırlık' },
@@ -28,7 +29,7 @@ function generateSlug(title: string) {
   return slug;
 }
 
-export default function AdminBlog() {
+function AdminBlogContent() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
@@ -407,5 +408,12 @@ export default function AdminBlog() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+export default function AdminBlog() {
+  return (
+    <AdminGate>
+      <AdminBlogContent />
+    </AdminGate>
   );
 }

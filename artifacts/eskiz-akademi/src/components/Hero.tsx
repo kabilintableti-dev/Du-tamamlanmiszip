@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ChevronDown } from 'lucide-react';
 import { AnnouncementsPanel } from './AnnouncementsPanel';
+import { useSiteText } from '@/lib/textsApi';
 import primaryVideo from '@assets/SnapInsta.to_AQPtHB0I7Zb2lhkplzUx4tmNVgdW8PChgRdcn10MMgSDWykR5_1784377547824.mp4';
-const secondaryVideo = primaryVideo;
 
 export function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -28,7 +28,10 @@ export function Hero() {
     }
   }, []);
 
-  const headingText = 'Sanatın Geleceğini Tasarla';
+  const headingText = useSiteText('hero_heading', 'Sanatın Geleceğini Tasarla');
+  const eyebrowText = useSiteText('hero_eyebrow', 'Güzel Sanatlar Fakültesi Hazırlık');
+  const subtext1 = useSiteText('hero_subtext_1', "İstanbul'un en seçkin güzel sanatlar hazırlık akademisinde");
+  const subtext2 = useSiteText('hero_subtext_2', 'yeteneğini keşfet, geleceğini inşa et.');
 
   return (
     <section className="relative w-full overflow-hidden" style={{ minHeight: '100dvh' }}>
@@ -42,7 +45,6 @@ export function Hero() {
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src={primaryVideo} type="video/mp4" />
-          <source src={secondaryVideo} type="video/mp4" />
         </video>
 
         {/* Base overlay: darkens the video evenly */}
@@ -68,7 +70,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-6 font-manrope text-xs md:text-sm tracking-[0.3em] uppercase text-eskiz-gold font-semibold"
             >
-              Güzel Sanatlar Fakültesi Hazırlık
+              {eyebrowText}
             </motion.div>
 
             <h1
@@ -88,14 +90,14 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.2 }}
               >
-                İstanbul'un en seçkin güzel sanatlar hazırlık akademisinde
+                {subtext1}
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.4 }}
               >
-                yeteneğini keşfet, geleceğini inşa et.
+                {subtext2}
               </motion.p>
             </div>
 
